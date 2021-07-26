@@ -1,151 +1,67 @@
+<html>
+<head>
+	<title> APEB2 David Chavez </title>
+	<link rel="stylesheet" type="text/css" href="/Users/deathmask/Documents/UTPL/ArqSoftware/mesas.css">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script type="text/javascript" src="/Users/deathmask/Documents/UTPL/ArqSoftware/mesas.js"></script>
+
+</head
+<body>
+	<div id="basliq"> <h2>Reserva de mesas</h2> </div>
+	
+	<div id="leftpanel">
+		<div class="title"> Menu (<i>15</i>)</div>
+		<div class="contain">
+		<div class="qida"> Comidas </div>
+		<div class="yemek">
+		<p id="pizza"> Pizza (<i>2.50 $</i>)</p>
+		<p id="sushi"> Sushi (<i>15.00 $</i>)</p>
+		<p id="hamburguesa"> Hamburguesa (<i>5.00 $</i>)</p>
+		<p id="sanduche"> Sanduche (<i>1.50 $</i>)</p>
+		<p id="pollo"> Pollo (<i>5.00 $</i>)</p>
+		<p id="milanesa"> Milanesa (<i>10 $</i>)</p>
+		<p id="cesar"> Ensalada Cesar (<i>6 $</i>)</p>
+		<p id="cebiche"> Cebiche (<i>6.00 $</i>)</p>
+		<p id="encebollado"> Encebollado (<i>2.99 $</i>)</p>
+
+		</div>
+
+		<div class="qida"> Bebidas </div>
+		<div class="icki">
+		<p id="cola"> Cola (<i>0.50 $</i>)</p>
+		<p id="fanta"> Fanta (<i>0.50 $</i>)</p>
+		<p id="mora"> Jugo de mora (<i>2.00 $</i>)</p>
+		<p id="fresa"> Jugo de fresa (<i>4.00 $</i>)</p>
+		<p id="cerveza"> Cerveza (<i>3.50 $</i>)</p>
+		<p id="Agua"> Agua (<i>1.00 $</i>)</p>
 
 
-$(document).ready(function() {
+		</div>
+		</div>
 
-function StaffMember(name,discountPercent){
-    this.name = name;
-    this.discountPercent = discountPercent;
-}
+	</div>
 
-// Create yourself again as 'me' with a staff discount of 20%
-var me = new StaffMember("David", 20);
+	<div id="rightpanel">
+		<div class="title"> Mesas </div>
+		<div class="contain">
+		<div class="table" id="1"><span>Mesa 1</span><p></p></div>
+		<div class="table" id="2"><span>Mesa 2</span><p></p></div>
+		<div class="table" id="3"><span>Mesa 3</span><p></p></div>
+		<div class="table" id="4"><span>Mesa 4</span><p></p></div>
+		<div class="table" id="5"><span>Mesa 5</span><p></p></div>
 
+		<div class="clear"></div>
+		</div>
 
-var cashRegister = {
-    total:0,
-    lastTransactionAmount: 0,
-    add: function(itemCost){
-        this.total += (itemCost || 0);
-        this.lastTransactionAmount = itemCost;
-    },
-    scan: function(item,quantity){
-        switch (item){
+		<div class="table-result" id="table1"><span>Mesa 1:</span><p></p><br/><button class="hesab" id="sum">Total</button><button class="hesab" id="close">Cerrar pedido</button></div>
+		<div class="table-result" id="table2"><span>Mesa 2:</span><p></p><br/><button class="hesab" id="sum">Total</button><button class="hesab" id="close">Cerrar pedido</button></div>
+		<div class="table-result" id="table3"><span>Mesa 3:</span><p></p><br/><button class="hesab" id="sum">Total</button><button class="hesab" id="close">Cerrar pedido</button></div>
+		<div class="table-result" id="table4"><span>Mesa 4:</span><p></p><br/><button class="hesab" id="sum">Total</button><button class="hesab" id="close">Cerrar pedido</button></div>
+		<div class="table-result" id="table5"><span>Mesa 5:</span><p></p><br/><button class="hesab" id="sum">Total</button><button class="hesab" id="close">Cerrar pedido</button></div>
+  <h5> Nota: Primero se debe seleccionar la mesa en la que se va a trabajar para después asignar los pedidos </h5>
+	</div>
 
-        	//qida
-        case "pizza": this.add(2 * quantity); break;
-        case "sushi": this.add(4 * quantity); break;
-        case "Hamburguesa": this.add(1 * quantity); break;
-        case "Sanduche": this.add(1.50 * quantity); break;
-        case "Pollo": this.add(2 * quantity); break;
-        case "Milanesa": this.add(12 * quantity); break;
-        case "Cesar": this.add(6 * quantity); break;
-        case "Cesar": this.add(2 * quantity); break;
-        case "Encebollado": this.add(10.99 * quantity); break;
+<div class="clear"></div>
+</body>
+</html>
 
-        //icki
-        case "cola": this.add(0.5 * quantity); break;
-        case "fanta": this.add(0.5 * quantity); break;
-        case "mora": this.add(2 * quantity); break;
-		case "fresa": this.add(4 * quantity); break;
-        case "Cerveza": this.add(16.50 * quantity); break;
-        case "Agua": this.add(33 * quantity); break;
-
-
-        }
-        return true;
-    },
-    voidLastTransaction : function(){
-        this.total -= this.lastTransactionAmount;
-        this.lastTransactionAmount = 0;
-    },
-    // Create a new method applyStaffDiscount here
-    applyStaffDiscount: function(employee) {
-        this.total -= this.total * (employee.discountPercent / 100);
-        
-    }
-    
-};
-
-
-//cashRegister.applyStaffDiscount(me);
-
-
-// Hide all table result divs
-$("#rightpanel .table-result").hide();
-
-//Toggle table result divs with clicking on related table
-
-$("#rightpanel .contain").on("click", ".table", function() {
-
-var tabid = $(this).attr("id");
-
-
-$("#leftpanel .contain p").removeAttr("class");
-$("#leftpanel .contain p").addClass(tabid);
-$("#rightpanel").children(".table-result").hide();
-$("#rightpanel").children("#table"+ tabid +"").toggle();
-
-
-});
-
-// Show the total bill
-$("#rightpanel .contain .table p").html('Sum: ' + cashRegister.total.toFixed(2) + '');
-
-
-
-//add qida to result-panel by clicking qidalar
-
-$("#leftpanel .contain p").click(function() {
-
-var tabid = $(this).attr("class");
-
-if(tabid == null){
-	alert("Please select table");
-}
-else {
-
-var orders = [];
-var yemek = $(this).attr("id"); // get the value of attribute id
-$("#rightpanel #table" + tabid + ".table-result p").append("<span>" + yemek + ",</span>");
-
-}
-
-// click on table result items for deleting them
-$("#rightpanel #table" + tabid + ".table-result p").on("click", "span", function() {
-$(this).remove();
-});
-
-
-// click to result table and show the price
-$("#rightpanel #table" + tabid + ".table-result button#sum").click(function() {
-
-var metn = $("#rightpanel #table" + tabid + ".table-result p").text(); // get the text of table result
-var letterorders = metn.length; // count characters from metn text
-var yemek2 = metn.substring(0, letterorders - 1); // cut the last comma 
-
-var orders = yemek2.split(",");
-
-
-var  count = {}; 
-orders.forEach(function(i) { count[i] = (count[i]||0)+1;  });
-cashRegister.total = 0;
-
-for(u = 0; u < orders.length; u++) {
-	//cashRegister.total = 0;
-cashRegister.scan(orders[u],1);
-
-
-}
-
-console.log();
-$("#rightpanel .contain #" + tabid + ".table p").html('Sum: ' + (cashRegister.total).toFixed(2) + '');
-
-
-});
-
-// here close the table and set the sum to zero
-$("#rightpanel #table" + tabid + ".table-result button#close").click(function() {
-
-
-cashRegister.total = 0;
-$("#rightpanel .contain #" + tabid + ".table p").html('Sum: ' + (cashRegister.total).toFixed(2) + '');
-$("#rightpanel #table" + tabid + ".table-result p").empty();
-
-
-});
-
-
-});
-
-
-});
