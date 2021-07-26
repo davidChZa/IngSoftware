@@ -7,8 +7,8 @@ body {
 }
 
 #basliq {
-background: #8dbc8f;
-color: #2f4f4f;
+background: #581845;
+color: #FDFEFD;
 text-align: center;
 margin: auto;
 border: 1px solid grey;
@@ -17,7 +17,7 @@ font-size: 20px;
 }
 
 .title {
-background: #8dbc8f;
+background: #C70039;
 color: white;
 margin: auto;
 text-align: center;
@@ -44,8 +44,8 @@ margin: 10px;
 }
 
 .qida {
-background: #deb887;
-color: black;
+background: #900C3F;
+color: white;
 margin: auto;
 text-align: center;
 padding: 5px;
